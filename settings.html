@@ -16,6 +16,7 @@
       display: flex;
       height: 100vh;
       background-color: #f4f7fc;
+      transition: background-color 0.3s ease;
     }
 
     .sidebar {
@@ -99,6 +100,7 @@
         display: none;
       }
     }
+
     .main-content {
       margin-left: 250px;
       padding: 20px;
@@ -109,49 +111,10 @@
       transition: margin-left 0.3s ease;
     }
 
-    .main-content h1 {
+    .main-content h2 {
       font-size: 28px;
-      margin-bottom: 15px;
-      color: #333;
-    }
-
-    .dashboard-section {
-      background: linear-gradient(135deg, #e0e7ff, #f4f7fc);
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 15px;
-      transition: transform 0.2s ease;
-    }
-
-    .dashboard-section:hover {
-      transform: translateY(-5px);
-    }
-
-    .dashboard-section h2 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      color: #555;
-    }
-
-    .dashboard-section p {
-      font-size: 16px;
-      color: #666;
-    }
-    .main-content {
-      margin-left: 250px;
-      padding: 20px;
-      width: calc(100% - 250px);
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      transition: margin-left 0.3s ease;
-    }
-
-    .main-content h1 {
-      font-size: 28px;
-      color: #333;
       margin-bottom: 20px;
+      color: #333;
       border-bottom: 2px solid #ddd;
       padding-bottom: 10px;
     }
@@ -162,11 +125,12 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       margin-bottom: 15px;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
 
     .settings-section:hover {
       transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .settings-section h2 {
@@ -182,6 +146,75 @@
       padding-left: 10px;
       border-left: 3px solid #ccc;
     }
+
+    .input-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 16px;
+      color: #444;
+    }
+
+    select, input[type="range"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .theme-toggle {
+      margin-top: 20px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 34px;
+      height: 20px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 50px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 12px;
+      width: 12px;
+      border-radius: 50px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #4CAF50;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(14px);
+    }
+
   </style>
 </head>
 <body>
@@ -189,32 +222,94 @@
     <h2>Dashboard</h2>
     <a href="#homepage" id="home" onclick="changeContent('Home')">Home</a>
     <a href="#exchange" id="exchange" onclick="changeContent('Exchange')">Exchange Rate Calculator</a>
-    <a href="#profile" id="profile" onclick="changeContent('Profile')">Profile</a>
+    <a href="#help" id="help" onclick="changeContent('Help')">Help</a>
     <a href="#settings" id="settings" onclick="changeContent('Settings')">Settings</a>
     <a href="#logout" id="logout" onclick="logout()">Log Out</a>
   </div>
 
   <div class="main-content">
-    <h2>Settings</h2>
-      <p>Customize your experience:</p>
-      <ul>
-        <li>
-          <label for="defaultCurrency">Default Currency:</label>
-          <select id="defaultCurrency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="PHP">PHP</option>
-          </select>
-        </li>
-        <li>
-          <label for="theme">Theme:</label>
-          <select id="theme" onchange="changeTheme(this.value)">
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </li>
-      </ul>
-  </div>
+    <span class="sidebar-toggle-btn" onclick="toggleSidebar()">☰</span>
+    <h1 style="text-align: center;">Settings</h1><br>
+    <h1>Customize your experience:</h1>
+    <br>
+    
+    <div class="settings-section">
+      <h2>Currency and Theme</h2>
+      <div class="input-group">
+        <label for="defaultCurrency">Default Currency:</label>
+        <select id="defaultCurrency">
+          <option value="AED">AED</option>
+          <option value="ARS">ARS</option>
+          <option value="AUD">AUD</option>
+          <option value="BGN">BGN</option>
+          <option value="BRL">BRL</option>
+          <option value="BSD">BSD</option>
+          <option value="CAD">CAD</option>
+          <option value="CHF">CHF</option>
+          <option value="CLP">CLP</option>
+          <option value="CNY">CNY</option>
+          <option value="COP">COP</option>
+          <option value="CZK">CZK</option>
+          <option value="DKK">DKK</option>
+          <option value="DOP">DOP</option>
+          <option value="EGP">EGP</option>
+          <option value="EUR">EUR</option>
+          <option value="FJD">FJD</option>
+          <option value="GBP">GBP</option>
+          <option value="GTQ">GTQ</option>
+          <option value="HKD">HKD</option>
+          <option value="HRK">HRK</option>
+          <option value="HUF">HUF</option>
+          <option value="IDR">IDR</option>
+          <option value="ILS">ILS</option>
+          <option value="INR">INR</option>
+          <option value="ISK">ISK</option>
+          <option value="JPY">JPY</option>
+          <option value="KRW">KRW</option>
+          <option value="KZT">KZT</option>
+          <option value="MXN">MXN</option>
+          <option value="MYR">MYR</option>
+          <option value="NOK">NOK</option>
+          <option value="NZD">NZD</option>
+          <option value="PAB">PAB</option>
+          <option value="PEN">PEN</option>
+          <option value="PHP">PHP</option>
+          <option value="PKR">PKR</option>
+          <option value="PLN">PLN</option>
+          <option value="PYG">PYG</option>
+          <option value="RON">RON</option>
+          <option value="RUB">RUB</option>
+          <option value="SAR">SAR</option>
+          <option value="SEK">SEK</option>
+          <option value="SGD">SGD</option>
+          <option value="THB">THB</option>
+          <option value="TRY">TRY</option>
+          <option value="TWD">TWD</option>
+          <option value="UAH">UAH</option>
+          <option value="USD" selected>USD</option>
+          <option value="UYU">UYU</option>
+          <option value="VND">VND</option>
+          <option value="ZAR">ZAR</option>
+        </select>
+      </div>
+
+      <!-- <div class="input-group">
+        <label for="theme">Theme:</label>
+        <select id="theme" onchange="changeTheme(this.value)">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div> -->
+
+      <!-- <div class="theme-toggle">
+        <label for="darkModeSwitch">Dark Mode:</label>
+        <label class="switch">
+          <input type="checkbox" id="darkModeSwitch" onclick="toggleDarkMode()">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div> -->
 
   <script>
     function toggleSidebar() {
@@ -229,8 +324,8 @@
         case 'Exchange':
           window.location.href = 'exchange.html';
           break;
-        case 'Profile':
-          window.location.href = 'profile.html';
+        case 'Help':
+          window.location.href = 'help.html';
           break;
         case 'Settings':
           window.location.href = 'settings.html';
@@ -245,7 +340,26 @@
       sessionStorage.clear();
       window.location.href = "Form.html";
     }
-</script>
 
+    // function changeTheme(value) {
+    //   if (value === 'dark') {
+    //     document.body.style.backgroundColor = '#333';
+    //     document.querySelector('.main-content').style.backgroundColor = '#444';
+    //   } else {
+    //     document.body.style.backgroundColor = '#f4f7fc';
+    //     document.querySelector('.main-content').style.backgroundColor = '#ffffff';
+    //   }
+    // }
+
+    // function toggleDarkMode() {
+    //   const body = document.body;
+    //   body.classList.toggle('dark-mode');
+    //   if (body.classList.contains('dark-mode')) {
+    //     body.style.backgroundColor = '#333';
+    //   } else {
+    //     body.style.backgroundColor = '#f4f7fc';
+    //   }
+    // }
+  </script>
 </body>
 </html>

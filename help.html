@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>profile</title>
+  <title>Exchange Rate</title>
   <style>
     * {
       margin: 0;
@@ -16,6 +16,7 @@
       display: flex;
       height: 100vh;
       background-color: #f4f7fc;
+      transition: background-color 0.3s ease;
     }
 
     .sidebar {
@@ -99,6 +100,7 @@
         display: none;
       }
     }
+
     .main-content {
       margin-left: 250px;
       padding: 20px;
@@ -117,33 +119,61 @@
       padding-bottom: 10px;
     }
 
-    .profile-section {
+    .exchange-rate-section {
       background: linear-gradient(135deg, #e0e7ff, #f4f7fc);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       margin-bottom: 15px;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
 
-    .profile-section:hover {
+    .exchange-rate-section:hover {
       transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .profile-section h2 {
+    .exchange-rate-section h2 {
       font-size: 22px;
       color: #555;
       margin-bottom: 10px;
     }
 
-    .profile-section p {
+    .exchange-rate-section p {
       font-size: 16px;
       color: #666;
       margin-bottom: 8px;
       padding-left: 10px;
       border-left: 3px solid #ccc;
     }
-    
+
+    .faq-section {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-section h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .faq-section ul {
+      list-style-type: none;
+    }
+
+    .faq-section li {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .faq-section li strong {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -151,21 +181,31 @@
     <h2>Dashboard</h2>
     <a href="#homepage" id="home" onclick="changeContent('Home')">Home</a>
     <a href="#exchange" id="exchange" onclick="changeContent('Exchange')">Exchange Rate Calculator</a>
-    <a href="#profile" id="profile" onclick="changeContent('Profile')">Profile</a>
+    <a href="#help" id="help" onclick="changeContent('Help')">Help</a>
     <a href="#settings" id="settings" onclick="changeContent('Settings')">Settings</a>
     <a href="#logout" id="logout" onclick="logout()">Log Out</a>
   </div>
 
   <div class="main-content">
-    <h2>Help</h2>
-      <p>If you need assistance, here are some frequently asked questions:</p>
+    <span class="sidebar-toggle-btn" onclick="toggleSidebar()">☰</span>
+    <h1>Exchange Rate</h1>
+    
+    <div class="exchange-rate-section">
+      <h2>Current Exchange Rates</h2>
+      <p><strong>USD to EUR:</strong> 1 USD = 0.93 EUR</p>
+      <p><strong>USD to PHP:</strong> 1 USD = 56.75 PHP</p>
+      <p><strong>EUR to USD:</strong> 1 EUR = 1.07 USD</p>
+      <p><strong>EUR to PHP:</strong> 1 EUR = 60.87 PHP</p>
+      <p><strong>PHP to USD:</strong> 1 PHP = 0.018 USD</p>
+      <p><strong>PHP to EUR:</strong> 1 PHP = 0.016 EUR</p>
+    </div>
+
+    <div class="faq-section">
+      <h3>Help & FAQs</h3>
       <ul>
-        <li><strong>How do I use the calculator?</strong><br>
-          Enter the amount, choose the currencies to convert from and to, then click "Calculate".</li>
-        <li><strong>Where do the exchange rates come from?</strong><br>
-          The rates are updated using reliable financial sources or APIs (e.g., Open Exchange Rates).</li>
-        <li><strong>How do I change the default currency?</strong><br>
-          Go to the Settings section and select your preferred default currency.</li>
+        <li><strong>How do I use the exchange rate calculator?</strong><br>Enter the amount, choose the currencies to convert from and to, then click "Calculate".</li>
+        <li><strong>Where do the exchange rates come from?</strong><br>The rates are updated using reliable financial sources or APIs (e.g., Open Exchange Rates).</li>
+        <li><strong>How frequently are the exchange rates updated?</strong><br>The exchange rates are updated in real-time or at regular intervals throughout the day.</li>
       </ul>
     </div>
   </div>
@@ -199,7 +239,7 @@
       sessionStorage.clear();
       window.location.href = "Form.html";
     }
-</script>
+  </script>
 
 </body>
 </html>

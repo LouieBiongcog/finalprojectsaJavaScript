@@ -7,9 +7,12 @@
 * {
   box-sizing: border-box;
 }
+.sidebar-toggle-btn {
+  display: block;
+}
 
 body {
-  background-color: #070606;
+  background-color: #f5efef;
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
@@ -21,7 +24,7 @@ body {
 }
 
 .wrapper {
-  background-color: #f4efea;
+  background-color: #915d29;
   padding: 2rem;
   border-radius: 10px;
   display: flex;

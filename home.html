@@ -100,6 +100,7 @@
       }
       
     }
+
     .main-content {
       margin-left: 250px;
       padding: 20px;
@@ -147,25 +148,30 @@
     <h2>Dashboard</h2>
     <a href="#homepage" id="home" onclick="changeContent('Home')">Home</a>
     <a href="#exchange" id="exchange" onclick="changeContent('Exchange')">Exchange Rate Calculator</a>
-    <a href="#profile" id="profile" onclick="changeContent('Profile')">Profile</a>
+    <a href="#help" id="help" onclick="changeContent('Help')">Help</a>
     <a href="#settings" id="settings" onclick="changeContent('Settings')">Settings</a>
     <a href="#logout" id="logout" onclick="logout()">Log Out</a>
   </div>
 
   <div class="main-content">
     <span class="sidebar-toggle-btn" onclick="toggleSidebar()">☰</span>
-    <h1>Welcome !</h1>
-    <div id="home" class="section">
-      <h2>Welcome to Exchange Rate Dashboard</h2>
-      <p>Track and convert exchange rates easily. Stay updated with the latest currency trends to make informed decisions for your financial needs.</p>
-      <h3>Live Exchange Rates</h3>
+    <h1>Welcome to the Exchange Rate Dashboard</h1>
+    <div class="dashboard-section">
+      <h2>Live Exchange Rates</h2>
       <ul>
-        <li>1 USD = 0.93 EUR</li>
-        <li>1 USD = 50 PHP</li>
-        <li>1 EUR = 54 PHP</li>
+        <li><strong>1 USD = 0.93 EUR</strong></li>
+        <li><strong>1 USD = 50 PHP</strong></li>
+        <li><strong>1 EUR = 54 PHP</strong></li>
       </ul>
+      <p>Stay updated with the latest exchange rates to make informed decisions when converting currencies for your financial needs.</p>
     </div>
 
+    <div class="dashboard-section">
+      <h2>How to Use the Calculator</h2>
+      <p>Enter the amount, select the currencies you want to convert, and click "Calculate" to see the converted value instantly.</p>
+    </div>
+
+  </div>
 
   <script>
     function toggleSidebar() {
@@ -177,11 +183,11 @@
         case 'Home':
           window.location.href = 'home.html';
           break;
-          case 'Exchange':
+        case 'Exchange':
           window.location.href = 'exchange.html';
           break;
-        case 'Profile':
-          window.location.href = 'profile.html';
+        case 'Help':
+          window.location.href = 'help.html';
           break;
         case 'Settings':
           window.location.href = 'settings.html';
@@ -196,7 +202,7 @@
       sessionStorage.clear();
       window.location.href = "Form.html";
     }
-</script>
+  </script>
 
 </body>
 </html>

@@ -179,11 +179,12 @@
   </style>
 </head>
 <body>
+  <span class="sidebar-toggle-btn" onclick="toggleSidebar()">☰</span>
   <div class="sidebar">
     <h2>Dashboard</h2>
     <a href="#homepage" id="home" onclick="changeContent('Home')">Home</a>
     <a href="#exchange" id="exchange" onclick="changeContent('Exchange')">Exchange Rate Calculator</a>
-    <a href="#profile" id="profile" onclick="changeContent('Profile')">Profile</a>
+    <a href="#help" id="help" onclick="changeContent('Help')">Help</a>
     <a href="#settings" id="settings" onclick="changeContent('Settings')">Settings</a>
     <a href="#logout" id="logout" onclick="logout()">Log Out</a>
   </div>
@@ -207,8 +208,8 @@
         case 'Exchange':
           window.location.href = 'exchange.html';
           break;
-        case 'Profile':
-          window.location.href = 'profile.html';
+        case 'Help':
+          window.location.href = 'help.html';
           break;
         case 'Settings':
           window.location.href = 'settings.html';
